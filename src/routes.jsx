@@ -1,7 +1,9 @@
 
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 
-const routes = [
-   
-  ];
+import router from "./routes"; // <-- import the router from your routes.jsx file
 
-export default routes;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={router} />);
