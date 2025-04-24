@@ -1,7 +1,8 @@
 
 // src/App.jsx
+// App.jsx
 import { Outlet } from "react-router-dom";
-import NavBar from "./components/NavBar"; // Adjust if path differs
+import NavBar from "./NavBar";
 
 function App() {
   return (

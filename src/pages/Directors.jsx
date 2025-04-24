@@ -1,4 +1,4 @@
-
+/*
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar"; // Adjust path if needed
 
@@ -39,7 +39,6 @@ function Directors() {
         <h1>Directors Page</h1>
         <section>
           {directors.map((director) => (
-            <article key={director.name}> {/* Using director name as key */}
               <h2>{director.name}</h2>
               <ul>
                 {director.movies.map((movie) => (
@@ -55,3 +54,72 @@ function Directors() {
 }
 
 export default Directors;
+*/
+/*
+import React from "react";
+import NavBar from "../components/NavBar";
+
+const directors = [
+  { name: "Director A", movies: ["Movie A", "Movie C"] },
+  { name: "Director B", movies: ["Movie B"] }
+];
+
+function Directors() {
+  return (
+    <div>
+      <NavBar />
+      <h1>Directors Page</h1>
+      {directors.map((director, index) => (
+        <article key={index}>
+          <h2>{director.name}</h2>
+          <ul>
+            {director.movies.map((movie, i) => (
+              <li key={i}>{movie}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export default Directors;
+*/
+// pages/Directors.jsx
+import React from "react";
+
+const directors = [
+  {
+    name: "Scott Derrickson",
+    movies: ["Doctor Strange", "Sinister", "The Exorcism of Emily Rose"],
+  },
+  {
+    name: "Mike Mitchell",
+    movies: ["Trolls", "Alvin and the Chipmunks: Chipwrecked", "Sky High"],
+  },
+  {
+    name: "Edward Zwick",
+    movies: ["Jack Reacher: Never Go Back", "Blood Diamond", "The Siege"],
+  },
+];
+
+function Directors() {
+  return (
+    <div>
+      <h1>Directors Page</h1>
+      {directors.map((director, index) => (
+        <article key={index}>
+          <h2>{director.name}</h2>
+          <ul>
+            {director.movies.map((movie, i) => (
+              <li key={i}>{movie}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export default Directors;
+

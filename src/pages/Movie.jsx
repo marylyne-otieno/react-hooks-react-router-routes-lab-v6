@@ -1,62 +1,85 @@
-
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+/*
+import React from "react";
+import { useParams, Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+
+const movies = [
+  { id: "1", title: "Doctor Strange", time: "115 min", genres: ["Action", "Thriller"] },
+  { id: "2", title: "Movie B", time: "90 min", genres: ["Drama"] },
+  { id: "3", title: "Movie C", time: "120 min", genres: ["Action", "Adventure"] },
+];
 
 function Movie() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
-  const [notFound, setNotFound] = useState(false);
+  const movie = movies.find((m) => m.id === id);
 
-  useEffect(() => {
-    const allMovies = [
-      { id: "1", title: "Inception", time: "148 min", genres: ["Action", "Sci-Fi"] },
-      { id: "2", title: "Interstellar", time: "169 min", genres: ["Adventure", "Drama", "Sci-Fi"] },
-      { id: "3", title: "The Dark Knight", time: "152 min", genres: ["Action", "Crime", "Drama"] },
-    ];
-
-    const foundMovie = allMovies.find((movie) => movie.id === id);
-
-    if (foundMovie) {
-      setMovie(foundMovie);
-      setNotFound(false);
-    } else {
-      setMovie(null);
-      setNotFound(true);
-    }
-  }, [id]);
-
-  if (notFound) {
-    return (
-      <>
-        <NavBar />
-        <main>
-          <h1>Movie Not Found</h1>
-          <p>No movie found with ID: {id}</p>
-        </main>
-      </>
-    );
-  }
-
-  if (!movie) {
-    return <p>Loading...</p>;
-  }
+  if (!movie) return <p>Movie not found</p>;
 
   return (
-    <>
-      <header>
-        <NavBar />
-      </header>
-      <main>
-        <h1>{movie.title}</h1>
-        <p>{movie.time}</p>
-        <div>
-          {movie.genres.map((genre, index) => (
-            <span key={index}>{genre} </span>
+    <div>
+      <NavBar />
+      <h1>{movie.title}</h1>
+      <p>{movie.time}</p>
+      <p>{movie.genres.join(", ")}</p>
+      <h2>Associated Movies</h2>
+      <ul data-testid="associated-movies-list">
+        {movies
+          .filter((m) => m.id !== id)
+          .map((associatedMovie) => (
+            <li key={associatedMovie.id}>
+              <Link
+                to={`/movie/${associatedMovie.id}`}
+                data-testid={`movie-link-${associatedMovie.id}`}
+              >
+                View Info
+              </Link>
+            </li>
           ))}
-        </div>
-      </main>
-    </>
+      </ul>
+    </div>
+  );
+}
+
+export default Movie;
+*/
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+
+const movies = [
+  { id: "1", title: "Doctor Strange", time: "115 min", genres: ["Action", "Thriller"] },
+  { id: "2", title: "Movie B", time: "90 min", genres: ["Drama"] },
+  { id: "3", title: "Movie C", time: "120 min", genres: ["Action", "Adventure"] },
+];
+
+function Movie() {
+  const { id } = useParams();
+  const movie = movies.find((m) => m.id === id);
+
+  if (!movie) return <p>Movie not found</p>;
+
+  return (
+    <div>
+      <NavBar />
+      <h1>{movie.title}</h1>
+      <p>{movie.time}</p>
+      <p>{movie.genres.join(", ")}</p>
+      <h2>Associated Movies</h2>
+      <ul data-testid="associated-movies-list">
+        {movies
+          .filter((m) => m.id !== id)
+          .map((associatedMovie) => (
+            <li key={associatedMovie.id}>
+              <Link
+                to={`/movie/${associatedMovie.id}`}
+                data-testid={`movie-link-${associatedMovie.id}`}
+              >
+                View Info
+              </Link>
+            </li>
+          ))}
+      </ul>
+    </div>
   );
 }
 
